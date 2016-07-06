@@ -11,13 +11,13 @@ child_1_1 child_1_2
 """
 
 
-root = Node('root', 'or')
+root = Node('root', 'OR')
 
-child_1 = Node('child1', 'and')
-child_2 = Node('child2', 'or')
+child_1 = Node('child1', 'AND')
+child_2 = Node('child2', 'OR')
 
-child_1_1 = Node('child_1_1', 'and')
-child_1_2 = Node('child_1_1', 'and')
+child_1_1 = Node('child_1_1', 'AND')
+child_1_2 = Node('child_1_1', 'AND')
 
 
 root.add_child(child_1)
@@ -60,3 +60,6 @@ root.update_all_from_leaf()
 assert root.state is False
 assert child_1.state is False
 assert child_2.state is False
+
+
+print("Success!")

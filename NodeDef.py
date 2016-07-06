@@ -3,9 +3,9 @@ class Node:
     def __init__(self, name, logic, init_state=False):
         self.name = name
         self.logic = logic
-        if logic == 'or':
+        if logic == 'OR':
             self.logic_func = lambda x, y: x or y
-        elif logic == 'and':
+        elif logic == 'AND':
             self.logic_func = lambda x, y: x and y
         else:
             raise ValueError('logic can be only "and" or "or"')

@@ -1,6 +1,6 @@
 class Node:
 
-    def __init__(self, name, logic, init_state=False):
+    def __init__(self, name, logic='AND', init_state=False):
         self.name = name
         self.logic = logic
         if logic == 'OR':

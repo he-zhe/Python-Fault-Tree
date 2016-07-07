@@ -29,7 +29,7 @@ assert root.children == [child_1, child_2]
 assert root.is_root() is True
 assert child_1.is_root() is False
 assert child_2.is_leaf() is True
-assert root.get_name() == 'root'
+assert root.name == 'root'
 assert child_1.parent == root
 assert child_2.state is False
 

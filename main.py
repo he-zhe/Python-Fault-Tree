@@ -1,10 +1,13 @@
 import os
 import random
+import time
 
 from import_tree_from_xml import import_tree_from_xml
 
+start_time = time.time()
+
 MAX_N_RESULT = 5
-N_Rep = 1000
+N_Rep = 10000000
 
 node_dict, leaf_node_dict = import_tree_from_xml(
     os.path.join('example', 'example.xml'))
@@ -18,7 +21,7 @@ for i in range(N_Rep):
         # http://stackoverflow.com/questions/6824681/get-a-random-boolean-in-python
         leaf_node_dict[leaf].state = bool(random.getrandbits(1))
 
-    # Update the whol tree
+    # Update the whole tree
     root.update_all_from_leaf()
 
     # root is 1, record the result
@@ -44,3 +47,4 @@ for i in range(N_Rep):
                 result.pop()
 
 print (result)
+print("===== %s seconds =====" % (time.time() - start_time))

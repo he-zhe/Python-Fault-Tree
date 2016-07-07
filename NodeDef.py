@@ -2,16 +2,16 @@ class Node:
 
     def __init__(self, name, logic='AND', init_state=False):
         if type(name) is not str:
-            raise ValueError("name can only be string type")
+            raise TypeError("name can only be string type")
         self.name = name
 
         if logic == 'OR' or logic == 'AND':
             self.logic = logic
         else:
-            raise ValueError('logic can be only "AND" or "OR"')
+            raise TypeError('logic can be only "AND" or "OR"')
 
         if type(init_state) is not bool:
-            raise ValueError("State can only be booleen type")
+            raise TypeError("State can only be booleen type")
         self.state = init_state  # Ture or False
         self.children = []
         self.parent = None
@@ -29,7 +29,7 @@ class Node:
 
     def change_state(self, new_state):
         if type(new_state) is not bool:
-            raise ValueError("State can only be booleen type")
+            raise TypeError("State can only be booleen type")
         self.state = new_state
 
     def add_child(self, new_child):

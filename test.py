@@ -30,7 +30,7 @@ assert root.is_root() is True
 assert child_1.is_root() is False
 assert child_2.is_leaf() is True
 assert root.name == 'root'
-assert child_1.parent == root
+assert root in child_1.parents
 assert child_2.state is False
 
 #  test propagate_up and OR gate

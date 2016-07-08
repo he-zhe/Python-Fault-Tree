@@ -4,7 +4,7 @@ import random
 from import_tree_from_xml import import_tree_from_xml
 
 
-def min_cut_monto_carlo(n_result, n_repeat, xmlfile='example/example.xml'):
+def min_cut_monte_carlo(n_result, n_repeat, xmlfile='example/example.xml'):
 
     node_dict, leaf_node_dict = import_tree_from_xml(xmlfile)
 
@@ -45,4 +45,4 @@ def min_cut_monto_carlo(n_result, n_repeat, xmlfile='example/example.xml'):
     return result
 
 if __name__ == '__main__':
-    print (min_cut_monto_carlo(5, 100))
+    print (min_cut_monte_carlo(5, 100))

@@ -9,8 +9,10 @@ A python 3 implementation of fault tree, with xml import support.  A min-cut of 
 Python 3.5
 
 ## Usage
-To get the result from `example/example.xml`:
-`python min-cut.py`
+To get the result from `example/example.xml`, in terminal:
+```
+python min-cut.py
+```
 
 To use customized xml file:
 ```

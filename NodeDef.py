@@ -47,12 +47,28 @@ class Node:
     # Update the tree based on all leaves
     # This can be implemented in stack instead of recursion, if large tree.
     def update_all_from_leaf(self):
-        if self.is_leaf():
-            self.calculate_state()
-            return
-        for child in self.children:
-            child.update_all_from_leaf()
-        self.calculate_state()
+        stack = [self]
+        visitd = [False]
+
+        while stack:
+            last_node = stack[-1]
+            # Leaf, or one's children already add to stack
+            if last_node.is_leaf() or visitd[-1]:
+                last_node.calculate_state()
+                stack.pop()
+                visitd.pop()
+            else:
+                visitd[-1] = True
+                for child in last_node.children:
+                    stack.append(child)
+                    visitd.append(False)
+        #  Recursive implementation
+        # if self.is_leaf():
+        #     self.calculate_state()
+        #     return
+        # for child in self.children:
+        #     child.update_all_from_leaf()
+        # self.calculate_state()
 
     # Update the ancesters of this node, without recalculate the whole tree.
     # Useful when update one or a few node(s).

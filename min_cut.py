@@ -1,4 +1,3 @@
-import os
 import random
 
 from import_tree_from_xml import import_tree_from_xml
@@ -42,7 +41,9 @@ def min_cut_monte_carlo(n_result, n_repeat, xmlfile='example/example.xml'):
                     result.sort(key=lambda x: x[0])
                     result.pop()
 
-    return result
+    result_beauty = [[node for node in each[1] if each[1][node]]
+                     for each in result]
+    return result_beauty
 
 if __name__ == '__main__':
     print (min_cut_monte_carlo(5, 100))

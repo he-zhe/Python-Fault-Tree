@@ -9,6 +9,14 @@ A python 3 implementation of fault tree, with xml import support.  A min-cut of 
 Python 3.5
 
 ## Usage
+To parse raw xml(e.g. `example/raw_tree.xml`) into tree xml(e.g. `example/example.xml`):
+```
+python parse_falt_tree.py  # check the result of example/raw_tree.xml
+python parse_falt_tree.py input_xml output_xml  # using customized input/output
+```
+
+
+
 To get the result from `example/example.xml`, in terminal:
 ```
 python min-cut.py

@@ -23,8 +23,10 @@ class Node:
 
         if self.logic == 'OR':  # OR gate, not leaf
             self.state = any(child.state for child in self.children)
-        else:  # AND gate, not leaf
+        elif self.logic == 'AND':  # AND gate, not leaf
             self.state = all(child.state for child in self.children)
+        else:
+            raise TypeError('logic can be only "AND" or "OR"')
         return self.state
 
     def change_state(self, new_state):

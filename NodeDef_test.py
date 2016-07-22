@@ -14,9 +14,9 @@ child_1_1 child_1_2
 root = Node('root', 'OR')
 
 child_1 = Node('child1', 'AND')
-child_2 = Node('child2', 'OR')
+child_2 = Node('child2', 'or')
 
-child_1_1 = Node('child_1_1', 'AND')
+child_1_1 = Node('child_1_1', 'aNd')
 child_1_2 = Node('child_1_1', 'AND')
 
 

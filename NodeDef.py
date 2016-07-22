@@ -5,8 +5,8 @@ class Node:
             raise TypeError("name can only be string type")
         self.name = name
 
-        if logic == 'OR' or logic == 'AND':
-            self.logic = logic
+        if logic.upper() == 'OR' or logic.upper() == 'AND':
+            self.logic = logic.upper()
         else:
             raise TypeError('logic can be only "AND" or "OR"')
 

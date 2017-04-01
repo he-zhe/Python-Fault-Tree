@@ -33,10 +33,10 @@ def min_cut_monte_carlo(n_result, n_repeat, xmlfile='example/example.xml'):
             # This part can be improved by implementing a fixed length sorted
             # list or max_heap, but trivial for smaller n_result
             if (n_leaf, one_leaf_dict) not in result:
-                if len(result) <= n_result:
+                if len(result) < n_result:
                     result.append((n_leaf, one_leaf_dict))
                     result.sort(key=lambda x: x[0])
-                elif n_leaf < result[-1][0]:
+                elif result and n_leaf < result[-1][0]:
                     result.append((n_leaf, one_leaf_dict))
                     result.sort(key=lambda x: x[0])
                     result.pop()
@@ -45,5 +45,16 @@ def min_cut_monte_carlo(n_result, n_repeat, xmlfile='example/example.xml'):
                      for each in result]
     return result_beauty
 
+
 if __name__ == '__main__':
-    print (min_cut_monte_carlo(5, 100))
+    import sys
+    import time
+    if len(sys.argv) == 4:
+        n_result = int(sys.argv[1])
+        n_repeat = int(sys.argv[2])
+        xmlfile = sys.argv[3]
+        start_time = time.time()
+        min_cut_monte_carlo(n_result, n_repeat, xmlfile)
+        print("--- %s seconds ---" % (time.time() - start_time))
+    else:
+        print("python min_cut n_result n_repeat xmlfile")

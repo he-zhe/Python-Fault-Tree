@@ -1,4 +1,7 @@
-import os
+import os#  Throw coin for all leaves
+        for leaf in leaf_node_dict:
+            # http://stackoverflow.com/questions/6824681/get-a-random-boolean-in-python
+            leaf_node_dict[leaf].state = bool(random.getrandbits(1))
 import sys
 import xml.etree.ElementTree as ET
 

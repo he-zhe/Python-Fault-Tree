@@ -82,14 +82,17 @@ def parse_falt_tree(xml_filename, output):
     result_tree.write(output)
 
 if __name__ == '__main__':
+    import time
     if len(sys.argv) == 1:
         xml_filename = 'example/raw_tree.xml'
         output = 'output.xml'
     elif len(sys.argv) == 2:
-        xml_filename = sys.argv[2]
+        xml_filename = sys.argv[1]
         output = 'output.xml'
     elif len(sys.argv) == 3:
-        xml_filename = sys.argv[2]
-        output = sys.argv[3]
+        xml_filename = sys.argv[1]
+        output = sys.argv[2]
 
+    start_time = time.time()
     parse_falt_tree(xml_filename, output)
+    print("--- %s seconds ---" % (time.time() - start_time))

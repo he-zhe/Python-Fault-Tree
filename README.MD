@@ -24,9 +24,7 @@ python min-cut.py
 
 To use customized xml file:
 ```
-from min_cut import min_cut_monte_carlo
-
-result = min_cut_monte_carlo(n_result, n_repeat, xmlfile)
+python min-cut.py n_result n_repeat xmlfile
 ```
 
 

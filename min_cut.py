@@ -20,7 +20,7 @@ def min_cut_monte_carlo(n_result, n_repeat, xmlfile='example/example.xml'):
         root.update_all_from_leaf()
 
         # root is 1, record the result
-        if root.state:
+        if n_result > 0 and root.state:
             one_leaf_dict = {}
             n_leaf = 0
 

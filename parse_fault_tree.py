@@ -29,7 +29,11 @@ def parse_falt_tree(xml_filename, output):
 
         for child in tree.getroot():
             node_name = child.attrib['src']
-            node_children = child.attrib['route'].split(', ')
+            node_children = child.attrib['route'].split(',')
+
+            # Remove trailing space
+            for node_child in node_children:
+                node_child = node_child.strip()
             if node_counter[node_name] > 1:
                 node_path_name = node_name + '-path' + \
                     str(node_name_incre[node_name])
@@ -95,4 +99,4 @@ if __name__ == '__main__':
 
     start_time = time.time()
     parse_falt_tree(xml_filename, output)
-    print("--- %s seconds ---" % (time.time() - start_time))
+    print("--- Parse file {} finished in {} seconds ---".format(xml_filename, time.time() - start_time))

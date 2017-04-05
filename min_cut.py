@@ -55,6 +55,6 @@ if __name__ == '__main__':
         xmlfile = sys.argv[3]
         start_time = time.time()
         min_cut_monte_carlo(n_result, n_repeat, xmlfile)
-        print("--- %s seconds ---" % (time.time() - start_time))
+        print("--- Running file {} finished in {} seconds ---".format(xmlfile, time.time() - start_time))
     else:
         print("python min_cut n_result n_repeat xmlfile")

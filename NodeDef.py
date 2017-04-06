@@ -69,3 +69,27 @@ class Node:
         # for child in self.children:
         #     child.update_all_from_leaf()
         # self.calculate_state()
+
+    def get_post_order_sequence_without_leaves(self):
+        if self.is_leaf():
+            return
+
+        stack = [self]
+        visitd = {self.name: False}
+
+        ret_seq = []
+
+        while stack:
+            last_node = stack[-1]
+            # Leaf, or one's children already add to stack
+            if visitd[last_node.name]:
+                ret_seq.append(last_node)
+                stack.pop()
+            else:
+                visitd[last_node.name] = True
+                for child in last_node.children:
+                    if not child.is_leaf():
+                        stack.append(child)
+                        visitd[child.name] = False
+
+        return ret_seq

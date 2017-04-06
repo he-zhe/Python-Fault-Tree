@@ -12,6 +12,9 @@ def min_cut_monte_carlo(n_result, n_repeat, xmlfile='example/example.xml'):
     result = []
     root = node_dict['Root']
 
+    # cache the sequence of tree traversal
+    post_order_sequence = root.get_post_order_sequence_without_leaves()
+
     for i in range(n_repeat):
         #  Throw coin for all leaves
         for leaf_node in leaf_node_tuple:
@@ -19,7 +22,8 @@ def min_cut_monte_carlo(n_result, n_repeat, xmlfile='example/example.xml'):
             leaf_node.state = random.random() > 0.5
 
         # Update the whole tree
-        root.update_all_from_leaf()
+        for node in post_order_sequence:
+            node.calculate_state()
 
         # root is 1, record the result
         if n_result > 0 and root.state:

@@ -7,14 +7,16 @@ def min_cut_monte_carlo(n_result, n_repeat, xmlfile='example/example.xml'):
 
     node_dict, leaf_node_dict = import_tree_from_xml(xmlfile)
 
+    leaf_node_tuple = tuple(leaf_node_dict.values())
+
     result = []
     root = node_dict['Root']
 
     for i in range(n_repeat):
         #  Throw coin for all leaves
-        for leaf in leaf_node_dict:
+        for leaf_node in leaf_node_tuple:
             # http://stackoverflow.com/questions/6824681/get-a-random-boolean-in-python
-            leaf_node_dict[leaf].state = bool(random.getrandbits(1))
+            leaf_node.state = random.random() > 0.5
 
         # Update the whole tree
         root.update_all_from_leaf()

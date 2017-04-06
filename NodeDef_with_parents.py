@@ -14,6 +14,7 @@ class Node:
             raise TypeError("State can only be booleen type")
         self.state = init_state  # Ture or False
         self.children = []
+        self.parents = []
 
     # calculate state based on its immediate children alone.
     def calculate_state(self):
@@ -37,16 +38,17 @@ class Node:
         if not isinstance(new_child, Node):
             raise TypeError("The node to be added is not an instance of Node")
         self.children.append(new_child)
+        new_child.parents.append(self)
 
     def is_leaf(self):
         return not bool(self.children)
 
+    def is_root(self):
+        return not bool(self.parents)
+
     # Update the tree based on all leaves
     # This can be implemented in stack instead of recursion, if large tree.
     def update_all_from_leaf(self):
-        if self.is_leaf():
-            return
-
         stack = [self]
         visitd = [False]
 
@@ -60,9 +62,8 @@ class Node:
             else:
                 visitd[-1] = True
                 for child in last_node.children:
-                    if not child.is_leaf():
-                        stack.append(child)
-                        visitd.append(False)
+                    stack.append(child)
+                    visitd.append(False)
         #  Recursive implementation
         # if self.is_leaf():
         #     self.calculate_state()
@@ -70,3 +71,14 @@ class Node:
         # for child in self.children:
         #     child.update_all_from_leaf()
         # self.calculate_state()
+
+    # Update the ancesters of this node, without recalculate the whole tree.
+    # Useful when update one or a few node(s).
+    def propagate_up(self):
+        walks = [self]
+        while walks:
+            new_walks = []
+            for walk in walks:
+                walk.calculate_state()
+                new_walks += walk.parents
+            walks = new_walks

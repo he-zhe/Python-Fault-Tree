@@ -26,26 +26,9 @@ child_1.add_child(child_1_1)
 child_1.add_child(child_1_2)
 
 assert root.children == [child_1, child_2]
-assert root.is_root() is True
-assert child_1.is_root() is False
 assert child_2.is_leaf() is True
 assert root.name == 'root'
-assert root in child_1.parents
 assert child_2.state is False
-
-#  test propagate_up and OR gate
-child_2.change_state(True)
-assert child_2.state is True
-assert root.state is False
-child_2.propagate_up()
-assert root.state is True
-
-#  test propagate_up and AND gate
-assert child_1.state is False
-child_1_2.change_state(True)
-assert child_1_2.state is True
-child_1_2.propagate_up()
-assert child_1.state is False
 
 
 #  test update_all_from_leaf
@@ -56,7 +39,6 @@ child_1_2.change_state(False)
 root.change_state(True)
 
 root.update_all_from_leaf()
-
 assert root.state is False
 assert child_1.state is False
 assert child_2.state is False

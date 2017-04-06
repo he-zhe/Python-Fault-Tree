@@ -48,21 +48,20 @@ class Node:
             return
 
         stack = [self]
-        visitd = [False]
+        visitd = {self.name: False}
 
         while stack:
             last_node = stack[-1]
             # Leaf, or one's children already add to stack
-            if last_node.is_leaf() or visitd[-1]:
+            if visitd[last_node.name]:
                 last_node.calculate_state()
                 stack.pop()
-                visitd.pop()
             else:
-                visitd[-1] = True
+                visitd[last_node.name] = True
                 for child in last_node.children:
                     if not child.is_leaf():
                         stack.append(child)
-                        visitd.append(False)
+                        visitd[child.name] = False
         #  Recursive implementation
         # if self.is_leaf():
         #     self.calculate_state()
